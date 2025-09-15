@@ -196,7 +196,7 @@ void UWallRunningCMC::PhysWallRun(float deltaTime, int32 Iterations)
 	FHitResult WallHit;
 	
 	GetWorld()->LineTraceSingleByProfile(WallHit, Start, End, "BlockAll", Params);
-	GetWorld()->LineTraceSingleByProfile(FloorHit, Start, Start + FVector::DownVector * (OwnerCapsuleHalfHeight() + MinWallRunHeight * 5.f, "BlockAll", Params));
+	GetWorld()->LineTraceSingleByProfile(FloorHit, Start, Start + FVector::DownVector * (OwnerCapsuleHalfHeight() + MinWallRunHeight * 5.f), "BlockAll", Params);
 	
 	if (FloorHit.IsValidBlockingHit() || !WallHit.IsValidBlockingHit() || Velocity.SizeSquared2D() < pow(MinWallRunSpeed, 2))
 	{
@@ -228,7 +228,7 @@ bool UWallRunningCMC::TryWallRun()
 	FHitResult FloorHit;
 	FHitResult WallHit;
 
-	if (GetWorld()->LineTraceSingleByProfile(FloorHit, Start, Start + FVector::DownVector * (OwnerCapsuleHalfHeight() + MinWallRunHeight * 5.f, "BlockAll", Params), "BlockAll", Params))
+	if (GetWorld()->LineTraceSingleByProfile(FloorHit, Start, Start + FVector::DownVector * (OwnerCapsuleHalfHeight() + MinWallRunHeight * 5.f), "BlockAll", Params))
 	{
 		return false;
 	}
